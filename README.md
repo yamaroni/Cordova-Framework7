@@ -3,10 +3,6 @@ Simple implementation and integration Cordova with Framework7.
 ## Requirements
 * `node.js` you can install it [here](https://nodejs.org/en/)  if you don't have one.
 ## Installation
-* install `cordova-cli` using
+install `cordova-cli` using:
+
     npm install -g cordova
-
-* If you are using [cordova-cli](https://github.com/apache/cordova-cli), install
-with:
-
-    cordova plugin add cordova-plugin-app-version
