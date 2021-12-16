@@ -9,3 +9,8 @@ Install `cordova-cli` using:
 Download `framework7` using:
 
     $ npm install framework7
+Go to folder `user/node_modules/framework7` and copy paste this file to your project:
+
+    - framework7-bundle.min.css
+    - framework7-bundle.min.js
+    - framework7-bundle.min.js.map
