@@ -5,7 +5,7 @@ Simple implementation and integration Cordova with Framework7.
 ## Installation
 Install `cordova-cli` using:
 
-    npm install -g cordova
+    $ npm install -g cordova
 Download `framework7` using:
 
-    npm install framework7
+    $ npm install framework7
