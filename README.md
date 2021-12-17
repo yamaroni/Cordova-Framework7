@@ -2,7 +2,7 @@
 Simple implementation and integration Cordova with Framework7.
 
 ## Requirements
-`NodeJS` you can install it [here](https://nodejs.org/en/)  if you don't have one.
+`NodeJS` you can download and install it [here](https://nodejs.org/en/)  if you don't have one.
 
 ## Installation
 Install `Cordova-cli` using:
@@ -12,21 +12,82 @@ Download `Framework7` using:
 
     $ npm install framework7
 ## Implementation
-Create your project using `Cordova-cli` with:
+Create your project using `Cordova-cli` with command:
 
-    $ cordova create your-project-name
-Open your project folder using CLI with:
+    $ cordova create [Your Project name]
+Open your project folder using CLI with command:
 
-    $ cd your-project-name
-Go to folder `user/node_modules/framework7` and copy this file:
+    $ cd [Your Project Name]
+Go to folder `[Your Username]/node_modules/framework7` and copy this file:
 
     framework7-bundle.min.css
     framework7-bundle.min.js
     framework7-bundle.min.js.map
-Paste `Framework7` files to your project with stucture like this:
+Paste `Framework7` files to your project folder with stucture like this:
 
-    - css
-      - framework7-bundle.min.css
-    - js
-      - framework7-bundle.min.js
-      - framework7-bundle.min.js.map
+    - [Your Project Name]
+      - www
+        - css
+          - framework7-bundle.min.css
+        - js
+          - framework7-bundle.min.js
+          - framework7-bundle.min.js.map
+Create `index.js` and `index.css` file to your project folder with structure like this:
+
+    - [Your Project Name]
+      - www
+        - css
+          - index.css
+        - js
+          - index.js
+Create folder and file `pages/[Your Page Here].html` for your page UI and Function:
+
+    - [Your Project Name]
+      - www
+        - pages
+          - [Your Page Here].html
+## Initialization
+Edit file `index.html` and write this code:
+
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>[Your Project Name]</title>
+        <link rel="stylesheet" href="css/framework7-bundle.min.css?v=[Your Framework7 Bundle Version]">
+        <link crossorigin rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="css/index.css?v=[Your Project Version]">
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="view view-main view-init" data-url="/"></div>
+        </div>
+        <script async src="cordova.js"></script>
+    </body>
+
+    </html>
+If you want to change your `Framework7` Theme, you can go [here](https://framework7.io/docs/color-themes#generate-color-theme) and generate your own theme color, then paste it on your `index.css` file. Your `index.css` file will look like this:
+
+    :root {
+        --f7-theme-color: #020202;
+        --f7-theme-color-rgb: 2, 2, 2;
+        --f7-theme-color-shade: #000000;
+        --f7-theme-color-tint: #161616;
+    }
+Open your `index.js` and write this code to configure your `Framework7` apps:
+
+    const onDeviceReady = () => {
+        console.log(`Running cordova-${cordova.platformId}@${cordova.version}`)
+        
+        new Framework7({
+            el: `#app`,
+            name: [Your Project Name],
+            routes: [{
+                path: `/`,
+                componentUrl: `./pages/[Your Page Here].html`,
+            }],
+        })
+    }
