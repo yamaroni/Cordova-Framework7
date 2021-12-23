@@ -2,7 +2,7 @@
 Simple implementation and integration Cordova with Framework7.
 
 ## Requirements
-`NodeJS` you can download and install it [here](https://nodejs.org/en/)  if you don't have one.
+`NodeJS` you can download and install it [here](https://nodejs.org/en/) if you don't have one.
 
 ## Installation
 Install `Cordova-cli` using:
@@ -15,15 +15,15 @@ Download `Framework7` using:
 Create your project using `Cordova-cli` with command:
 
     $ cordova create [Your Project name]
-Open your project folder using CLI with command:
+Open your `Cordova` project folder with command:
 
     $ cd [Your Project Name]
-Go to folder `[Your Username]/node_modules/framework7` and copy this file:
+Go to folder `[Your Username]/node_modules/framework7` and copy files below:
 
     framework7-bundle.min.css
     framework7-bundle.min.js
     framework7-bundle.min.js.map
-Paste `Framework7` files to your project folder with stucture like this:
+Paste `Framework7` files to your project folder with stucture:
 
     - [Your Project Name]
       - www
@@ -32,7 +32,7 @@ Paste `Framework7` files to your project folder with stucture like this:
         - js
           - framework7-bundle.min.js
           - framework7-bundle.min.js.map
-Create `index.js` and `index.css` file to your project folder with structure like this:
+Create `index.js` and `index.css` file to your project folder with structure:
 
     - [Your Project Name]
       - www
@@ -47,7 +47,7 @@ Create folder and file `pages/[Your Page Here].html` for your page UI and Functi
         - pages
           - [Your Page Here].html
 ## Initialization
-Edit file `index.html` and write this code:
+Edit file `www/index.html` and write:
 
     <!DOCTYPE html>
     <html>
@@ -66,10 +66,11 @@ Edit file `index.html` and write this code:
             <div class="view view-main view-init" data-url="/"></div>
         </div>
         <script async src="cordova.js"></script>
+        <script defer src="js/index.js?v=[Your Project Version]"></script>
     </body>
 
     </html>
-If you want to change your `Framework7` Theme, you can go [here](https://framework7.io/docs/color-themes#generate-color-theme) and generate your own theme color, then paste it on your `index.css` file. Your `index.css` file will look like this:
+If you want to change your `Framework7` Theme, you can go [here](https://framework7.io/docs/color-themes#generate-color-theme) and generate your own theme color, then paste it on your `index.css` file. Your `index.css` file will look like:
 
     :root {
         --f7-theme-color: #020202;
