@@ -1,6 +1,12 @@
 # Cordova-Framework7
 Simple implementation and integration Cordova with Framework7.
 
+## Table of Content
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Implementation](#implementation)
+- [Initialization](#initialization)
+
 ## Requirements
 `NodeJS` you can download and install it [here](https://nodejs.org/en/) if you don't have one.
 
