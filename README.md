@@ -60,11 +60,11 @@ Edit file `www/index.html` and write:
 
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, viewport-fit=cover">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <title>[Your Project Name]</title>
         <link rel="stylesheet" href="css/framework7-bundle.min.css?v=[Your Framework7 Bundle Version]">
-        <link crossorigin rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="css/index.css?v=[Your Project Version]">
+        <link rel="stylesheet" href="css/index.css?v=[Your Project Version]">
     </head>
 
     <body>
