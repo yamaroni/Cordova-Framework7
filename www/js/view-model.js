@@ -11,4 +11,7 @@ const viewModel = [{
 }, {
     path: '/features/battery/',
     componentUrl: `./pages/features/battery.html?v=${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`,
+}, {
+    path: '/features/iab/',
+    componentUrl: `./pages/features/iab.html?v=${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`,
 }]
