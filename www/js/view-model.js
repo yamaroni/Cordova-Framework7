@@ -8,4 +8,7 @@ const viewModel = [{
 }, {
     path: '/features/orientation/',
     componentUrl: `./pages/features/orientation.html?v=${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`,
+}, {
+    path: '/features/battery/',
+    componentUrl: `./pages/features/battery.html?v=${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`,
 }]
