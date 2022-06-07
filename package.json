@@ -1,0 +1,36 @@
+{
+  "name": "com.lilstudio.prototype",
+  "displayName": "Lil Studio",
+  "version": "1.0.0",
+  "description": "Prototype Lil Studio App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "cordova": {
+    "platforms": [
+      "android",
+      "browser"
+    ],
+    "plugins": {
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-battery-status": {},
+      "cordova-plugin-inappbrowser": {}
+    }
+  },
+  "devDependencies": {
+    "cordova-android": "^10.1.2",
+    "cordova-browser": "^6.0.0",
+    "cordova-plugin-battery-status": "^2.0.3",
+    "cordova-plugin-inappbrowser": "^5.0.0",
+    "cordova-plugin-screen-orientation": "^3.0.2",
+    "cordova-plugin-statusbar": "^3.0.0",
+    "es6-promise-plugin": "^4.2.2"
+  }
+}

@@ -1,0 +1,101 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="title">Lil Studio</div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="block-title">Main Menu</div>
+            <div class="list links-list no-chevron no-hairlines no-hairlines-between">
+                <ul class="margin-horizontal">
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> openStatusBar()}" class="no-ripple no-active-state">
+                            <div style="font-weight: bold;">Statusbar</div>
+                        </a>
+                    </li>
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> openOrientation()}" class="no-ripple no-active-state">
+                            <div style="font-weight: bold;">Screen Orientation</div>
+                        </a>
+                    </li>
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> openBattery()}" class="no-ripple no-active-state">
+                            <div style="font-weight: bold;">Battery</div>
+                        </a>
+                    </li>
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> openIAB()}" class="no-ripple no-active-state">
+                            <div style="font-weight: bold;">In App Browser</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    "user strict"
+    export default (props, { $onBeforeMount, $onMounted, $onBeforeUnmount, $f7 }) => {
+
+        let isExit = false
+        
+        $onBeforeMount(() => {
+            console.log('main:before-mount')
+            document.addEventListener('backbutton', $onBackButton, false)
+        })
+
+        $onMounted(() => {
+            console.log('main:mounted')
+        })
+
+        $onBeforeUnmount(() => {
+            console.log('main:before-unmount')
+            document.removeEventListener('backbutton', $onBackButton, false)
+        })
+
+        ///USECASE
+        const openStatusBar = () => {
+            $f7.view.main.router.navigate('/features/statusbar/', { transition: 'f7-fade' })
+        }
+        const openOrientation = () => {
+            $f7.view.main.router.navigate('/features/orientation/', { transition: 'f7-fade' })
+        }
+        const openBattery = () => {
+            $f7.view.main.router.navigate('/features/battery/', { transition: 'f7-fade' })
+        }
+        const openIAB = () => {
+            $f7.view.main.router.navigate('/features/iab/', { transition: 'f7-fade' })
+        }
+
+        ///HELPER
+        const $onBackButton = (e) => {
+            console.log('main:back')
+            e.preventDefault()
+
+            if (isExit) navigator.app.exitApp()
+            if (!isExit) toast('Press again to exit!', e)
+        }
+        const toast = (msg, e) => {
+            notification = $f7.toast.create({
+                text: msg,
+                position: 'center',
+                horizontalPosition: 'center',
+                closeTimeout: 2000,
+                destroyOnClose: true,
+                on: {
+                    open: () => {
+                        if (e) isExit = true
+                    },
+                    close: () => {
+                        if (e) isExit = false
+                    }
+                }
+            }).open()
+        }
+
+        return $render
+    }
+</script>

@@ -1,0 +1,379 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left">
+                    <a class="link back no-ripple no-active-state">
+                        <i class="icon icon-back"></i>
+                    </a>
+                </div>
+                <div class="title">In App Browser</div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="block-title">Config</div>
+            <div class="list simple-list no-hairlines no-hairlines-between">
+                <ul class="margin-horizontal-half">
+                    <li class="item-content item-input margin-bottom">
+                        <div class="item-inner no-padding-right">
+                            <div class="item-title item-label">URL</div>
+                            <div class="item-input-wrap">
+                                <input @keyup="${()=> set('url', event.target.value)}" type="url" placeholder="google.com" />
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Location
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Turn InAppBrowser's location bar on or off.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('location', event.target.checked)}" type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Hidden
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Set true to create the browser and load the page, but not show it. Otherwise browser will be opened and load normally.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('hidden', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Clear Cache
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="The browser's cookie cache cleared before the new window is opened.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('clear-cache', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Clear Session Cache
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="The session cookie cache cleared before the new window is opened.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('clear-session-cache', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Footer
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Show a close button in the footer.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('footer', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Hardware Back
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Use the hardware back button to navigate backwards through the InAppBrowser's history.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('hardware-back', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Hide Navigation Buttons
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Hide the navigation buttons on the location toolbar, only has effect if user has location set to true.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('hide-nav-buttons', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Hide URL Bar
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Hide the url bar on the location toolbar, only has effect if user has location set to true.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('hide-url-bar', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Left to Right
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Swap positions of the navigation buttons and the close button.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('left-to-right', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Zoom
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Show Android browser's zoom controls.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('zoom', event.target.checked)}" type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Media Playback Autoplay
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Prevent HTML5 audio or video from autoplaying.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('media-playback', event.target.checked)}" type="checkbox" />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Should Pause on Suspend
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Make InAppBrowser WebView to pause/resume with the app to stop background audio.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('pause-on-suspend', event.target.checked)}" type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Use Wide Viewport
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Sets whether the WebView should enable support for the 'viewport' HTML meta tag or should use a wide viewport.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('wide-viewport', event.target.checked)}" type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="display-flex align-items-center">
+                            Fullscreen
+                            <svg class="padding-left-half tooltip-init text-color-gray" width="24" height="24" viewBox="0 0 24 24" 
+                            data-tooltip="Sets whether the InappBrowser WebView is displayed fullscreen or not.">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                            </svg>
+                        </div>
+                        <label class="toggle toggle-init color-primary">
+                            <input @change="${()=> set('fullscreen', event.target.checked)}" type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="list links-list no-chevron no-hairlines no-hairlines-between">
+                <ul class="margin-horizontal">
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> openIABSelf()}" class="no-ripple no-active-state">
+                            <svg class="text-color-white" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"></path>
+                            </svg>
+                            <div style="font-weight: bold;">Open on Self</div>
+                        </a>
+                    </li>
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> openIABBlank()}" class="no-ripple no-active-state">
+                            <svg class="text-color-white" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"></path>
+                            </svg>
+                            <div style="font-weight: bold;">Open on Blank</div>
+                        </a>
+                    </li>
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> openIABSystem()}" class="no-ripple no-active-state">
+                            <svg class="text-color-white" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"></path>
+                            </svg>
+                            <div style="font-weight: bold;">Open on System</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    "user strict"
+    export default (props, { $onBeforeMount, $onMounted, $onBeforeUnmount, $f7, $update }) => {
+
+        let iabModel = {
+                url: 'google.com',
+                location: true,
+                hidden: false,
+                clearCache: false,
+                clearSessionCache: false,
+                footer: false,
+                hardwareBack: false,
+                hideNavButtons: false,
+                hideURLBar: false,
+                leftToRight: false,
+                zoom: true,
+                mediaPlayback: false,
+                pauseOnSuspend: true,
+                wideViewport: true,
+                fullscreen: true,
+            }
+        
+        $onBeforeMount(() => {
+            console.log('iab:before-mount')
+            document.addEventListener('backbutton', $onBackButton, false)
+        })
+
+        $onMounted(() => {
+            console.log('iab:mounted')
+        })
+
+        $onBeforeUnmount(() => {
+            console.log('iab:before-unmount')
+            document.removeEventListener('backbutton', $onBackButton, false)
+        })
+
+        ///USECASE
+        const openIABSelf = () => {
+            let config = `location=${iabModel.location ? 'yes' : 'no'},hidden=${iabModel.hidden ? 'yes' : 'no'},clearcache=${iabModel.clearCache ? 'yes' : 'no'},clearsessioncache=${iabModel.clearSessionCache ? 'yes' : 'no'},footer=${iabModel.footer ? 'yes' : 'no'},hardwareback=${iabModel.hardwareBack ? 'yes' : 'no'},hidenavigationbuttons=${iabModel.hideNavButtons ? 'yes' : 'no'},hideurlbar=${iabModel.hideURLBar ? 'yes' : 'no'},lefttoright=${iabModel.leftToRight ? 'yes' : 'no'},zoom=${iabModel.zoom ? 'yes' : 'no'},mediaPlaybackRequiresUserAction=${iabModel.mediaPlayback ? 'yes' : 'no'},shouldPauseOnSuspend=${iabModel.pauseOnSuspend ? 'yes' : 'no'},useWideViewPort=${iabModel.wideViewport ? 'yes' : 'no'},fullscreen=${iabModel.fullscreen ? 'yes' : 'no'}`
+            
+            cordova.InAppBrowser.open(
+                encodeURI(`https://${iabModel.url}` || 'https://google.com'),
+                '_self',
+                config
+            )
+        }
+        const openIABBlank = () => {
+            let config = `location=${iabModel.location ? 'yes' : 'no'},hidden=${iabModel.hidden ? 'yes' : 'no'},clearcache=${iabModel.clearCache ? 'yes' : 'no'},clearsessioncache=${iabModel.clearSessionCache ? 'yes' : 'no'},footer=${iabModel.footer ? 'yes' : 'no'},hardwareback=${iabModel.hardwareBack ? 'yes' : 'no'},hidenavigationbuttons=${iabModel.hideNavButtons ? 'yes' : 'no'},hideurlbar=${iabModel.hideURLBar ? 'yes' : 'no'},lefttoright=${iabModel.leftToRight ? 'yes' : 'no'},zoom=${iabModel.zoom ? 'yes' : 'no'},mediaPlaybackRequiresUserAction=${iabModel.mediaPlayback ? 'yes' : 'no'},shouldPauseOnSuspend=${iabModel.pauseOnSuspend ? 'yes' : 'no'},useWideViewPort=${iabModel.wideViewport ? 'yes' : 'no'},fullscreen=${iabModel.fullscreen ? 'yes' : 'no'}`
+            
+            cordova.InAppBrowser.open(
+                encodeURI(`https://${iabModel.url}` || 'https://google.com'),
+                '_blank',
+                config
+            )
+        }
+        const openIABSystem = () => {
+            let config = `location=${iabModel.location ? 'yes' : 'no'},hidden=${iabModel.hidden ? 'yes' : 'no'},clearcache=${iabModel.clearCache ? 'yes' : 'no'},clearsessioncache=${iabModel.clearSessionCache ? 'yes' : 'no'},footer=${iabModel.footer ? 'yes' : 'no'},hardwareback=${iabModel.hardwareBack ? 'yes' : 'no'},hidenavigationbuttons=${iabModel.hideNavButtons ? 'yes' : 'no'},hideurlbar=${iabModel.hideURLBar ? 'yes' : 'no'},lefttoright=${iabModel.leftToRight ? 'yes' : 'no'},zoom=${iabModel.zoom ? 'yes' : 'no'},mediaPlaybackRequiresUserAction=${iabModel.mediaPlayback ? 'yes' : 'no'},shouldPauseOnSuspend=${iabModel.pauseOnSuspend ? 'yes' : 'no'},useWideViewPort=${iabModel.wideViewport ? 'yes' : 'no'},fullscreen=${iabModel.fullscreen ? 'yes' : 'no'}`
+            
+            cordova.InAppBrowser.open(
+                encodeURI(`https://${iabModel.url}` || 'https://google.com'),
+                '_system',
+                config
+            )
+        }
+        const set = (e, value) => {
+            switch (e) {
+                case 'url':
+                    iabModel.url = value
+                    break
+                case 'location':
+                    iabModel.location = value
+                    break
+                case 'hidden':
+                    iabModel.hidden = value
+                    break
+                case 'clear-cache':
+                    iabModel.clearCache = value
+                    break
+                case 'clear-session-cache':
+                    iabModel.clearSessionCache = value
+                    break
+                case 'footer':
+                    iabModel.footer = value
+                    break
+                case 'hardware-back':
+                    iabModel.hardwareBack = value
+                    break
+                case 'hide-nav-buttons':
+                    iabModel.hideNavButtons = value
+                    break
+                case 'hide-url-bar':
+                    iabModel.hideURLBar = value
+                    break
+                case 'left-to-right':
+                    iabModel.leftToRight = value
+                    break
+                case 'zoom':
+                    iabModel.zoom = value
+                    break
+                case 'media-playback':
+                    iabModel.mediaPlayback = value
+                    break
+                case 'pause-on-suspend':
+                    iabModel.pauseOnSuspend = value
+                    break
+                case 'wide-viewport':
+                    iabModel.wideViewport = value
+                    break
+                case 'fullscreen':
+                    iabModel.fullscreen = value
+                    break
+                default: break
+            }
+        }
+
+        ///HELPER
+        const $onBackButton = (e) => {
+            console.log('iab:back')
+            e.preventDefault()
+            back()
+        }
+        const back = () => {
+            $f7.view.main.router.back()
+        }
+        const toast = (msg) => {
+            $f7.toast.create({
+                text: msg,
+                position: 'bottom',
+                horizontalPosition: 'left',
+                closeTimeout: 3000,
+                destroyOnClose: true,
+            }).open()
+        }
+
+        return $render
+    }
+</script>

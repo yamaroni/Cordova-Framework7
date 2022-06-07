@@ -1,0 +1,129 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left">
+                    <a class="link back no-ripple no-active-state">
+                        <i class="icon icon-back"></i>
+                    </a>
+                </div>
+                <div class="title">Battery</div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="block-title">Battery Level</div>
+            <div class="display-flex justify-content-space-evenly align-items-center ${batteryStatus.charging ? 'text-color-green' : batteryStatus.warning ? 'text-color-yellow' : batteryStatus.danger ? 'text-color-red' : 'text-color-black'}" style="width: 100%;">
+                <div style="font-size: xxx-large; font-weight: bold;">${batteryLevel}</div>
+                ${batteryLevel == 100 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-black" width="48" height="48" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"></path>
+                    </svg>
+                ` : batteryLevel < 100 && batteryLevel >= 80 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-black" width="48" height="48" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 5v16c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h2V2h4v2h2c.55 0 1 .45 1 1zm-2 1H9v2h6V6z"></path>
+                    </svg>
+                ` : batteryLevel < 80 && batteryLevel >= 60 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-black" width="48" height="48" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 5v16c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h2V2h4v2h2c.55 0 1 .45 1 1zm-2 1H9v4h6V6z"></path>
+                    </svg>
+                ` : batteryLevel < 60 && batteryLevel >= 50 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-black" width="48" height="48" viewBox="0 0 24 24">
+                        <path d="M17 5v16c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h2V2h4v2h2c.55 0 1 .45 1 1zm-2 1H9v6h6V6z"></path>
+                    </svg>
+                ` : batteryLevel < 50 && batteryLevel >= 30 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-black" width="48" height="48" viewBox="0 0 24 24">
+                        <path d="M17 5v16c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h2V2h4v2h2c.55 0 1 .45 1 1zm-2 1H9v8h6V6z"></path>
+                    </svg>
+                ` : batteryLevel < 30 && batteryLevel >= 20 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-black" width="48" height="48" viewBox="0 0 24 24">
+                        <path d="M17 5v16c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h2V2h4v2h2c.55 0 1 .45 1 1zm-2 1H9v10h6V6z"></path>
+                    </svg>
+                ` : batteryLevel < 20 && batteryLevel > 0 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-yellow" width="48" height="48" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 5v16c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h2V2h4v2h2c.55 0 1 .45 1 1zm-2 1H9v12h6V6z"></path>
+                    </svg>
+                ` : batteryLevel == 0 && !batteryStatus.charging ? $h`
+                    <svg class="text-color-red" width="48" height="48" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 5v16c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V5c0-.55.45-1 1-1h2V2h4v2h2c.55 0 1 .45 1 1zm-2 1H9v14h6V6z"></path>
+                    </svg>
+                ` : $h`
+                    <svg class="text-color-green" width="48" height="48" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM11 20v-5.5H9L13 7v5.5h2L11 20z"></path>
+                    </svg>
+                `}
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    "user strict"
+    export default (props, { $onBeforeMount, $onMounted, $onBeforeUnmount, $f7, $update }) => {
+
+        let batteryLevel = 0,
+            batteryStatus = {
+                charging: false,
+                warning: false,
+                danger: false
+            }
+        
+        $onBeforeMount(() => {
+            console.log('battery:before-mount')
+            window.addEventListener('batterystatus', getBattery, false)
+            window.addEventListener('batterylow', getBatteryLow, false)
+            window.addEventListener('batterycritical', getBatteryCritical, false)
+            document.addEventListener('backbutton', $onBackButton, false)
+        })
+
+        $onMounted(() => {
+            console.log('battery:mounted')
+        })
+
+        $onBeforeUnmount(() => {
+            console.log('battery:before-unmount')
+            window.removeEventListener('batterystatus', getBattery, false)
+            window.removeEventListener('batterylow', getBatteryLow, false)
+            window.removeEventListener('batterycritical', getBatteryCritical, false)
+            document.removeEventListener('backbutton', $onBackButton, false)
+        })
+
+        ///USECASE
+        const getBattery = (res) => {
+            if (cordova.platformId == 'android') {
+                batteryLevel = res.level
+
+                batteryStatus.warning = false
+                batteryStatus.danger = false
+                res.isPlugged ? batteryStatus.charging = true : batteryStatus.charging = false
+                $update()
+            }
+        }
+        const getBatteryLow = (res) => {
+            if (cordova.platformId == 'android') {
+                batteryStatus.danger = false
+                batteryStatus.warning = true
+                $update()
+            }
+        }
+        const getBatteryCritical = (res) => {
+            if (cordova.platformId == 'android') {
+                batteryStatus.warning = false
+                batteryStatus.danger = true
+                $update()
+            }
+        }
+
+        ///HELPER
+        const $onBackButton = (e) => {
+            console.log('battery:back')
+            e.preventDefault()
+            back()
+        }
+        const back = () => {
+            $f7.view.main.router.back()
+        }
+
+        return $render
+    }
+</script>

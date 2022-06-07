@@ -1,0 +1,120 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+                <div class="left">
+                    <a class="link back no-ripple no-active-state">
+                        <i class="icon icon-back"></i>
+                    </a>
+                </div>
+                <div class="title">Screen Orientation</div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="block-title">Command</div>
+            <div class="list links-list no-chevron no-hairlines no-hairlines-between">
+                <ul class="margin-horizontal">
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> setOrientationPortrait()}" class="no-ripple no-active-state">
+                            <svg class="text-color-white" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M10 16h4c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1v-1c0-1.11-.9-2-2-2-1.11 0-2 .9-2 2v1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1zm.8-6c0-.66.54-1.2 1.2-1.2.66 0 1.2.54 1.2 1.2v1h-2.4v-1zM17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14z"></path>
+                            </svg>
+                            <div style="font-weight: bold;">Lock Portrait</div>
+                        </a>
+                    </li>
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> setOrientationLandscape()}" class="no-ripple no-active-state">
+                            <svg class="text-color-white" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M21 5H3c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-2 12H5V7h14v10zm-9-1h4c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1v-1c0-1.11-.9-2-2-2-1.11 0-2 .9-2 2v1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1zm.8-6c0-.66.54-1.2 1.2-1.2.66 0 1.2.54 1.2 1.2v1h-2.4v-1z"></path>
+                            </svg>
+                            <div style="font-weight: bold;">Lock Landscape</div>
+                        </a>
+                    </li>
+                    <li class="bg-color-primary text-color-white margin-bottom-half" style="border-radius: .5rem;">
+                        <a @click="${()=> setOrientationAuto()}" class="no-ripple no-active-state">
+                            <svg class="text-color-white" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M16.48 2.52c3.27 1.55 5.61 4.72 5.97 8.48h1.5C23.44 4.84 18.29 0 12 0l-.66.03 3.81 3.81 1.33-1.32zm-6.25-.77c-.59-.59-1.54-.59-2.12 0L1.75 8.11c-.59.59-.59 1.54 0 2.12l12.02 12.02c.59.59 1.54.59 2.12 0l6.36-6.36c.59-.59.59-1.54 0-2.12L10.23 1.75zm4.6 19.44L2.81 9.17l6.36-6.36 12.02 12.02-6.36 6.36zm-7.31.29C4.25 19.94 1.91 16.76 1.55 13H.05C.56 19.16 5.71 24 12 24l.66-.03-3.81-3.81-1.33 1.32z"></path>
+                            </svg>
+                            <div style="font-weight: bold;">Unlock</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    "user strict"
+    export default (props, { $onBeforeMount, $onMounted, $onBeforeUnmount, $f7 }) => {
+        
+        $onBeforeMount(() => {
+            console.log('orientation:before-mount')
+            window.addEventListener('orientationchange', getOrientation)
+            document.addEventListener('backbutton', $onBackButton, false)
+        })
+
+        $onMounted(() => {
+            console.log('orientation:mounted')
+        })
+
+        $onBeforeUnmount(() => {
+            console.log('orientation:before-unmount')
+            window.removeEventListener('orientationchange', getOrientation)
+            document.removeEventListener('backbutton', $onBackButton, false)
+            setOrientationAuto()
+        })
+
+        ///USECASE
+        const setOrientationPortrait = () => {
+            console.log('orientation: portrait')
+
+            if (cordova.platformId == 'android') {
+                screen.orientation.lock('portrait')
+            }
+        }
+        const setOrientationLandscape = () => {
+            console.log('orientation: landscape')
+
+            if (cordova.platformId == 'android') {
+                screen.orientation.lock('landscape')
+            }
+        }
+        const setOrientationAuto = () => {
+            console.log('orientation: auto')
+
+            if (cordova.platformId == 'android') {
+                screen.orientation.unlock()
+            }
+        }
+        const getOrientation = () => {
+            console.log(`orientation: ${screen.orientation.type.split('-')[0]}`)
+
+            if (cordova.platformId == 'android') {
+                toast(`Device Orientation: ${uFirst(screen.orientation.type.split('-')[0])}`)
+            }
+        }
+
+        ///HELPER
+        const $onBackButton = (e) => {
+            console.log('orientation:back')
+            e.preventDefault()
+            back()
+        }
+        const back = () => {
+            $f7.view.main.router.back()
+        }
+        const toast = (msg) => {
+            $f7.toast.create({
+                text: msg,
+                position: 'bottom',
+                horizontalPosition: 'left',
+                closeTimeout: 3000,
+                destroyOnClose: true,
+            }).open()
+        }
+
+        return $render
+    }
+</script>
