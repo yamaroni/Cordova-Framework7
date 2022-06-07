@@ -1,0 +1,80 @@
+/*BODY*/
+html, body {
+    width: 100vw!important;
+    height: 100vh!important;
+}
+/*APP*/
+#app {
+    content-visibility: auto!important;
+    contain-intrinsic-size: 1000px!important;
+    -moz-user-select: none!important;
+    -webkit-user-select: none!important;
+    -ms-user-select: none!important;
+    user-select: none!important;
+    -webkit-touch-callout:none!important;
+}
+/*PADDING*/
+.padding-2x {
+    padding-top: 32px!important;
+    padding-bottom: 32px!important;
+    padding-left: 32px!important;
+    padding-right: 32px!important;
+}
+.padding-vertical-2x {
+    padding-top: 32px!important;
+    padding-bottom: 32px!important;
+}
+.padding-horizontal-2x {
+    padding-left: 32px!important;
+    padding-right: 32px!important;
+}
+.padding-top-2x {
+    padding-top: 32px!important;
+}
+.padding-bottom-2x {
+    padding-bottom: 32px!important;
+}
+.padding-left-2x {
+    padding-left: 32px!important;
+}
+.padding-right-2x {
+    padding-right: 32px!important;
+}
+/*MARGIN*/
+.margin-2x {
+    margin-top: 32px!important;
+    margin-bottom: 32px!important;
+    margin-left: 32px!important;
+    margin-right: 32px!important;
+}
+.margin-vertical-2x {
+    margin-top: 32px!important;
+    margin-bottom: 32px!important;
+}
+.margin-horizontal-2x {
+    margin-left: 32px!important;
+    margin-right: 32px!important;
+}
+.margin-top-2x {
+    margin-top: 32px!important;
+}
+.margin-bottom-2x {
+    margin-bottom: 32px!important;
+}
+.margin-left-2x {
+    margin-left: 32px!important;
+}
+.margin-right-2x {
+    margin-right: 32px!important;
+}
+/*BORDER RADIUS*/
+.border-radius-s {
+    border-radius: .5rem!important;
+}
+.border-radius-m {
+    border-radius: 1rem!important;
+}
+/*NAVBAR*/
+.navbar .title {
+    line-height: inherit!important;
+}
