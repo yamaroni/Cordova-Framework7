@@ -1,5 +1,5 @@
 # 📱 Cordova + Framework7 Starter Template
-A ready-to-use hybrid mobile app starter using Cordova + Framework7.
+A ready-to-use hybrid mobile app starter using [Cordova](https://cordova.apache.org/) + [Framework7](https://framework7.io/).
 Perfect for developers who want fast setup, clean structure, and zero clutter. 🚀
 
 ## 📸 Preview
@@ -99,3 +99,5 @@ Open your `index.js` and write this code to configure your `Framework7` apps:
             }],
         })
     }
+## 📜 License
+MIT — free to use, modify, and share.
