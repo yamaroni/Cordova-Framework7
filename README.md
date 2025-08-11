@@ -1,23 +1,24 @@
-# Cordova-Framework7
-Simple implementation and integration Cordova with Framework7.
+# 📱 Cordova + Framework7 Starter Template
+A ready-to-use hybrid mobile app starter using Cordova + Framework7.
+Perfect for developers who want fast setup, clean structure, and zero clutter. 🚀
 
-## Table of Content
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Implementation](#implementation)
-- [Initialization](#initialization)
+## 📸 Preview
+| iOS Look                                                             | Android Look                                                                 |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [Demo](https://framework7.io/kitchen-sink/core/?theme=ios) | [Demo](https://framework7.io/kitchen-sink/core/?theme=md) |
 
-## Requirements
+
+## 📂 Requirements
 `NodeJS` you can download and install it [here](https://nodejs.org/en/) if you don't have one.
 
-## Installation
+## 📦 Installation
 Install `Cordova-cli` using:
 
     $ npm install -g cordova
 Download `Framework7` using:
 
     $ npm install framework7
-## Implementation
+## 🚀 Implementation
 Create your project using `Cordova-cli` with command:
 
     $ cordova create [Your Project name]
@@ -52,7 +53,7 @@ Create folder and file `pages/[Your Page Here].html` for your page UI and Functi
       - www
         - pages
           - [Your Page Here].html
-## Initialization
+## ⚙ Initialization
 Edit file `www/index.html` and write:
 
     <!DOCTYPE html>
